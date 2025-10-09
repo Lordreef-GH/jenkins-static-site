@@ -1,0 +1,23 @@
+services:
+  jenkins:
+    extends:
+      file: ./jenkins-static-site/docker-compose.yml
+      service: jenkins
+    container_name: novastore-jenkins
+  web:
+    extends:
+      file: ./jenkins-static-site/docker-compose.yml
+      service: web
+    container_name: novastore-web-static
+  novastore-web:
+    extends:
+      file: ./NovaStore/docker-compose.yml
+      service: novastore-web
+    container_name: novastore-web
+
+volumes:
+  jenkins_home:
+  web_content:
+
+# To run as a single stack name:
+# docker compose -p novastore -f compose.all.yml up -d
